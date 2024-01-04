@@ -18,7 +18,7 @@ const Signup = () => {
     try {
       const auth = getAuth();
       await createUserWithEmailAndPassword(auth, email, password);
-      navigate.push('/dashboard');
+      navigate('/dashboard');
       const resumeData = {
         address: "",
         education: [],
