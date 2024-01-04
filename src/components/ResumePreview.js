@@ -21,9 +21,7 @@ const ResumePreview = ({ formData }) => {
   };
 
   return (
-    <div
-      id="ResumePreview"
-      className="container mx-auto my-8 p-8 bg-gray-100 shadow-lg"
+    <div className="container mx-auto my-8 p-8 bg-gray-100 shadow-lg"
     >
       <div className="mb-4">
         {/* Add template selection controls */}
@@ -38,8 +36,9 @@ const ResumePreview = ({ formData }) => {
           {/* Add more template options as needed */}
         </select>
       </div>
-
+<div id="ResumePreview" className="mb-4">
       {renderSelectedTemplate()}
+      </div>
     </div>
   );
 };
