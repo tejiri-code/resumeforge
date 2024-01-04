@@ -16,7 +16,7 @@ const ExportButton = ({ resumeData, dataLoaded }) => {
     html2canvas(element).then((canvas) => {
       const imgData = canvas.toDataURL("image/png");
       const pdf = new jsPDF();
-      pdf.addImage(imgData, "PNG", 0, 0, 150, 180); // Adjust width and height as needed
+      pdf.addImage(imgData, "PNG", 0, 0, 170, 220); // Adjust width and height as needed
       pdf.save("resume.pdf");
     });
   };
