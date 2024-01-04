@@ -7,10 +7,18 @@ import { collection, addDoc } from "firebase/firestore";
 import { db } from "../firebase";
 import ResumePreview from "./ResumePreview";
 import ExportButton from "./ExportButton";
+import { auth } from '../firebase';
 
 const ResumeForm = () => {
   const dispatch = useDispatch();
 
+  const handleLogout = async () => {
+    try {
+      await auth.signOut();
+    } catch (error) {
+      console.error('Error signing out:', error);
+    }
+  };
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -124,6 +132,12 @@ const ResumeForm = () => {
 
   return (
     <div className="container mx-auto my-8 p-8 bg-gray-100 shadow-lg justify-center items-center min-h-screen">
+         <button
+            onClick={handleLogout}
+            className="group relative w-full mt-4 mb-5 flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-red-600 hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500"
+          >
+            Log out
+          </button>
       <form
         onSubmit={handleSubmit}
         className="container grid-cols-1 md:grid-cols-2 gap-8 justify-center items-center"
