@@ -19,9 +19,16 @@ const Dashboard = () => {
           <h2 className="mt-6 text-center text-3xl font-extrabold text-gray-900">Dashboard</h2>
         </div>
         <div className="text-center">
+          <Link to="/resume-form">
+            <button
+              className="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
+            >
+              Go to Resume Form
+            </button>
+          </Link>
           <button
             onClick={handleLogout}
-            className="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-red-600 hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500"
+            className="group relative w-full mt-4 flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-red-600 hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500"
           >
             Log out
           </button>

@@ -1,21 +1,23 @@
 // Login.js
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { auth } from '../firebase';
-import { useNavigate } from 'react-router-dom'
+import { getAuth, signInWithEmailAndPassword } from 'firebase/auth';
+import { useNavigate } from 'react-router-dom';
 
 const Login = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState(null);
-  const Navigate = useNavigate();
+  const navigate = useNavigate();
 
   const handleLogin = async (e) => {
     e.preventDefault();
 
     try {
-      await auth.signInWithEmailAndPassword(email, password);
-      Navigate.push('/dashboard');
+      const auth = getAuth();
+      await signInWithEmailAndPassword(auth, email, password);
+      navigate.push('/dashboard');
+      
     } catch (error) {
       setError(error.message);
     }

@@ -1,8 +1,10 @@
 // Signup.js
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { auth } from '../firebase';
-import { useNavigate } from 'react-router-dom'
+import { getAuth, createUserWithEmailAndPassword } from 'firebase/auth';
+import { useNavigate } from 'react-router-dom';
+import { addDoc, collection } from 'firebase/firestore';
+import { db } from '../firebase';
 
 const Signup = () => {
   const [email, setEmail] = useState('');
@@ -14,12 +16,30 @@ const Signup = () => {
     e.preventDefault();
 
     try {
-      await auth.createUserWithEmailAndPassword(email, password);
+      const auth = getAuth();
+      await createUserWithEmailAndPassword(auth, email, password);
       navigate.push('/dashboard');
+      const resumeData = {
+        address: "",
+        education: [],
+        email: email,
+        experience: [],
+        name: "",
+        objective: " ",
+        phone: "",
+        projects: [],
+        skills: "",
+      };
+
+      // Add the resume data to the 'resumes' collection
+      await addDoc(collection(db, 'resumes'), resumeData);
+
     } catch (error) {
       setError(error.message);
     }
-  };
+
+};
+
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-gray-50 py-12 px-4 sm:px-6 lg:px-8">
